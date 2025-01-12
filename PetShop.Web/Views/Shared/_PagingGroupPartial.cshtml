@@ -1,0 +1,39 @@
+﻿@{
+    string controller="";
+    var modelName = Model.GetType().FullName.ToLower();
+    if (modelName.Contains("showproductviewmodel"))
+    {
+        controller = "Product";
+    }
+    if (modelName.Contains("blog"))
+    {
+        controller = "blog";
+    }
+}
+<div class="row mt-3 justif ">
+    <div class="col-12 text-center mx-auto">
+        <ul class="pagination justify-content-center">
+
+            @if (ViewBag.pageCount > 1 && ViewBag.pageid > 1)
+            {
+                <li class="page-item"><a asp-controller=@controller asp-action="index" asp-route-page="@(ViewBag.pageid-1)" class="page-link">قبلی</a></li>
+            }
+
+
+            @for (int i = 1; i <= ViewBag.pageCount; i++)
+            {
+                <li class="page-item @(i==ViewBag.pageid?"active":"")"><a asp-controller=@controller asp-action="index" asp-route-page="@i" class="page-link">@(i)</a></li>
+
+            }
+
+
+            @if (ViewBag.pageCount > 1 && ViewBag.pageCount > ViewBag.pageid)
+            {
+                <li class="page-item"><a asp-controller=@controller asp-action="index" asp-route-page="@(ViewBag.pageid+1)" class="page-link">بعدی</a></li>
+            }
+
+
+
+        </ul>
+    </div>
+</div>

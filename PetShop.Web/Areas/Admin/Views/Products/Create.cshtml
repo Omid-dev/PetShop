@@ -1,0 +1,80 @@
+﻿@model PetShop.Domain.Models.Products.Product
+
+@{
+    ViewData["Title"] = "افزودن محصول";
+}
+
+<h1>افزودن - محصول </h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Stock" class="control-label"></label>
+                <input asp-for="Stock" class="form-control" />
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input oninput="formatNumber(this)" asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Desctiption" class="control-label"></label>
+                <input asp-for="Desctiption" class="form-control" />
+                <span asp-validation-for="Desctiption" class="text-danger"></span>
+            </div> 
+            <div class="form-group">
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" name="Text" class="form-control"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupId" class="control-label"></label>
+                <select asp-for="GroupId" class ="form-control" asp-items="ViewBag.GroupId"></select>
+            </div>
+
+            <div class="form-group">
+                <label  class="control-label"> عکس محصول</label>
+                <input name="imgUpload" class="form-control" type="file" />
+                @* <span asp-validation-for="ImageName" class="text-danger"></span> *@
+            </div>
+  
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success btn-sm" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-sm btn-warning" asp-action="Index">بازگشت</a>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace( 'Text' );
+    </script>
+
+
+    @* <script> function formatNumber(input) {  *@
+    @*     let value = input.value.replace(/\D/g, '');  *@
+    @*     let formattedValue = value.replace(/\B(?=(\d{3})+(?!\d))/g, ','); *@
+    @*     input.value = formattedValue; } </script> *@
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

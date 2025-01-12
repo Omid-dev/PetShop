@@ -1,0 +1,49 @@
+﻿@model IEnumerable<PetShop.Domain.Models.Blog.Group.BlogGroup>
+
+@{
+    ViewData["Title"] = "لیست گروه بلاگ";
+}
+
+<h1>گروه بلاگ ها </h1>
+
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create">افزودن</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="@(item.IsDeleted?"danger":" ")">
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">ویرایش</a> |
+                
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

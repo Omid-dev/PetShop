@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PetShop.Domain.Models.Blog.Group.Blog>
+
+@{
+    ViewData["Title"] = "لیست وبلاگ ها";
+}
+
+
+<p>
+    <a class="btn btn-success btn-sm" asp-action="Create">افزودن</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Seen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlogGroup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+       
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.IsDeleted?"danger":" ")">
+
+                <td>
+                    <img src="/BlogImage/@item.ImageName" style="max-width:120px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @item.ShortDescription
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Seen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogGroup.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @item.CreateDate.Toshamsi()
+                </td>
+          
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.Id">ویرایش</a>
+
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

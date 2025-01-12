@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PetShop.Domain.Models.Slider>
+
+@{
+    ViewData["Title"] = "بنر های سایت";
+}
+
+
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create">افزدون</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Url)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FromDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ToDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="@(item.IsDeleted?"danger":"")">
+       
+            <td>
+               <img src="/SliderImgaes/@item.ImageName"style="width:200px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Url)
+            </td>
+            <td>
+                @item.FromDate.Toshamsi()
+            </td>
+            <td>
+                @item.ToDate?.Toshamsi()
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsDeleted)
+            </td>
+            <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+          
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

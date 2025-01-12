@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "صفحه اصلی";
+}
+
+@* ----------Slider------------- *@
+@section Slider {
+   
+    @await Component.InvokeAsync("Slider");
+}
+
+@* ______________Category_____________ *@
+@section Category {
+ 
+    @await Component.InvokeAsync("Category")
+}
+
+
+@* -----------------New-Products------------- *@
+
+@section New_Product {
+    @* <partial name="_New-Products_Partial.cshtml" /> *@
+    @await Component.InvokeAsync("NewProducts")
+
+
+}
+
+@* -----------------About_Us------------- *@
+
+@section About_Us {
+    @await Component.InvokeAsync("About_Us")
+
+}
+
+@* -----------------Customer_Comments------------- *@
+
+@section Customer_Comments {
+   
+    @await Component.InvokeAsync("NewComnets")
+
+}
+
+@section Blog {
+    @await Component.InvokeAsync("NewBlogs")
+
+}
+
+@section Footer {
+    <partial name="_Footer_Partial" />
+
+}

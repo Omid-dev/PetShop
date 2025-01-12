@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ShowLastBlogViewModel>
+<ul>
+@foreach (var item in Model)
+    {
+        <li class="my-1">
+            <div class="d-flex align-items-center justify-content-between">
+                <a asp-action="Details" asp-controller="blog" asp-route-BlogId="@item.BlogId"><img src="/BlogImage/@item.ImageName"></a>
+                <div class="mr-2">
+                    <p><a style="font-size:14px" asp-action="Details" asp-controller="blog" asp-route-BlogId="@item.BlogId">@item.Title.</a></p>
+                    <p style="font-size:12px">@item.CreateDate.Toshamsi()</p>
+                </div>
+            </div>
+        </li>
+    }
+
+
+</ul>

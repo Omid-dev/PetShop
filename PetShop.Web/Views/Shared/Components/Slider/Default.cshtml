@@ -1,0 +1,20 @@
+﻿@model List<Slider>
+<div class="row">
+
+    <div class="col-lg-12 p-0 mb-3">
+        <div id="owl-mainslider" class="owl-carousel owl-theme text-center">
+
+            @foreach (var item in Model)
+            {
+                <div class="item">
+                    <a href="@item.Url"target="_blank">
+                        <img src="~/SliderImgaes/@item.ImageName" class="img-fluid radius-slide" alt="@item.Name" style="max-width:1100px;max-height:450px"/>
+                    </a>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+</div>

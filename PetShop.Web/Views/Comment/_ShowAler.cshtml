@@ -1,0 +1,27 @@
+﻿<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+
+    $(document).ready(function() {
+                    Swal.fire({
+                     icon: 'Warning',
+                     title: 'توجه',
+                     text: 'شما در سایت ثبت نام نکردید',
+                     confirmButtonText: ' ثبت نام ',
+                     width: '30%',
+                     padding: '1.5em',
+                     customClass:
+                     {
+                     popup: 'small-alert'
+                     }
+           }).then((result)=>{
+                   if (result.isConfirmed) {
+               window.location.href="/Login"
+
+               }
+           });
+    
+
+    });
+
+</script>

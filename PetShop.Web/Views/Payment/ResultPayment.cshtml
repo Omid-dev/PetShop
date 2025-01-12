@@ -1,0 +1,30 @@
+﻿@model PaymentViewModel
+
+<div class="container mt-5">
+    <h2>جزئیات پیام</h2>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>کد پیگیری</th>
+                <th>وضعیت</th>
+                <th>پیام</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.RefId</td>
+                <td>
+                    @if (Model.Status == Result.Success)
+                    {
+                        <span class="badge badge-success">موفق</span>
+                    }
+                    else if (Model.Status == Result.Erorr)
+                    {
+                        <span class="badge badge-danger">خطا</span>
+                    }
+                </td>
+                <td>@Model.Message</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

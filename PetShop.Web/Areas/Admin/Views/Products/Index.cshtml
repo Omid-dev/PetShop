@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PetShop.Domain.Models.Products.Product>
+
+@{
+    ViewData["Title"] = "لیست محصولات";
+}
+
+<h1>لیست محصولات</h1>
+
+<p>
+    <a class="btn btn-sm btn-success" asp-action="Create">افزودن محصول</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desctiption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Groups)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.IsDeleted.ToString().ToLower()=="true"?"danger":"success")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                   <p>@Convert.ToInt32(item.Price).ToString("#,0")</p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Stock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Desctiption)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Groups.Title)
+                </td>
+
+                <td>
+                    <img src="/ProductImages/@item.ImageName" style="max-width:120px" />
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">ویرایش</a> |
+                    <a class="btn btn-sm btn-primary" asp-action="Details" asp-route-id="@item.Id">جزئیات</a> |
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

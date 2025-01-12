@@ -1,0 +1,52 @@
+﻿@model PetShop.Domain.Models.Products.Groups
+
+@{
+    ViewData["Title"] = "حذف گروه";
+}
+
+<h1>حذف @Model.Title</h1>
+
+
+<div>
+    <h4>Groups</h4>
+    <hr />
+    <dl class="row">
+
+        <dt class = "col-md 12">
+            عنوان
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            توضیحات
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+           تاریخ ایجاد
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt class = "col-sm-2">
+                تاریخ ویرایش
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ModifiedDate)
+        </dd>
+        <dt class = "col-sm-2">
+            آیا حذف شده است؟
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input  type="submit" value="حذف" class="btn btn-sm btn-danger" /> |
+        <a class="btn btn-sm btn-priamry" asp-action="Index">بازگشت</a>
+    </form>
+</div>
